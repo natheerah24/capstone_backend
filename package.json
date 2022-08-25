@@ -1,0 +1,37 @@
+{
+  "name": "candy-kingdom",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19",
+    "procfile": "^0.1.1"
+  },
+  "engines": {
+    "node": "16.15.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natheerah24/candy-kingdom_backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/natheerah24/candy-kingdom_backend/issues"
+  },
+  "homepage": "https://github.com/natheerah24/candy-kingdom_backend#readme",
+  "description": ""
+}
