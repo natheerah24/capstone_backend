@@ -1,0 +1,29 @@
+body {
+  padding-left: 10rem;
+  padding-right: 10rem;
+  background-color: #a483da;
+}
+h1,
+h2 {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+@media (max-width: 300px) {
+  body {
+    background-color: #a483da;
+    padding: 0%;
+  }
+}
+@media (max-width: 400px) {
+  body {
+    background-color: #a483da;
+    padding: 0%;
+  }
+}
+@media (max-width: 500px) {
+  body {
+    background-color: #a483da;
+    padding: 0%;
+  }
+}
