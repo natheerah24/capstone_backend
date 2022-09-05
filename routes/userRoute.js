@@ -43,7 +43,6 @@ router.post("/register", (req, res) => {
       default_shipping_address,
       country,
       phone,
-      user_type,
     } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
@@ -55,7 +54,6 @@ router.post("/register", (req, res) => {
       default_shipping_address,
       country,
       phone,
-      user_type,
     };
     con.query(sql, user, (err, result) => {
       if (err) throw err;
