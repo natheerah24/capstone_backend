@@ -68,6 +68,7 @@ router.post("/register", (req, res) => {
 });
 // PUT
 router.put("/:user_id", (req, res) => {
+  let sql = "UPDATE users SET ?";
   const {
     email,
     password,
@@ -80,14 +81,22 @@ router.put("/:user_id", (req, res) => {
   } = req.body;
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
+
+  let user = {
+    email,
+    password: hash,
+    full_name,
+    billing_address,
+    default_shipping_address,
+    country,
+    phone,
+    user_type,
+  };
   try {
-    con.query(
-      `UPDATE users SET email="${email}",password="${password}",full_name="${full_name}",billing_address="${billing_address}",default_shipping_address="${default_shipping_address}",country="${country}",phone="${phone}",user_type="${user_type}" WHERE user_id=${req.params.user_id}`,
-      (err, result) => {
-        if (err) throw err;
-        res.send(result);
-      }
-    );
+    con.query(sql, user, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+    });
   } catch (error) {
     console.log(error);
   }
