@@ -124,30 +124,29 @@ router.post("/login", (req, res) => {
     con.query(sql, user, async (err, result) => {
       if (err) throw err;
       if (result.length === 0) {
-        res.status(400).json({
-          status: "error",
-          error: "Email not found",
-        });
+        res.send("email not found please register");
       } else {
         const isMatch = await bcrypt.compare(
           req.body.password,
           result[0].password
         );
+        // New code
         if (!isMatch) {
           res.send("Password incorrect");
         } else {
+          // The information the should be stored inside token
           const payload = {
-            user: {
-              user_id: result[0].user_id,
-              email: result[0].email,
-              full_name: result[0].full_name,
-              billing_address: result[0].billing_address,
-              default_shipping_address: result[0].default_shipping_address,
-              country: result[0].country,
-              phone: result[0].phone,
-              user_type: result[0].user_type,
-            },
+            // user: {
+            user_id: result[0].user_id,
+            email: result[0].email,
+            full_name: result[0].full_name,
+            billing_address: result[0].billing_address,
+            default_shipping_address: result[0].default_shipping_address,
+            country: result[0].country,
+            phone: result[0].phone,
+            user_type: result[0].user_type,
           };
+          // Creating a token and setting expiry date
           jwt.sign(
             payload,
             process.env.jwtSecret,
