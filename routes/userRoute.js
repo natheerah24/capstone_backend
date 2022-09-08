@@ -124,16 +124,21 @@ router.post("/login", (req, res) => {
     con.query(sql, user, async (err, result) => {
       if (err) throw err;
       if (result.length === 0) {
-        res.send("email not found please register");
+      res.status(400).json({
+          status: "error",
+          error: "Email not found please register",
+        });
       } else {
         const isMatch = await bcrypt.compare(
-          req.body.password,
-          result[0].password
-        );
-        // New code
-        if (!isMatch) {
-          res.send("Password incorrect");
-        } else {
+          req.body.passwordHash,
+          result[0].passwordHash
+          );
+          if (!isMatch) {
+            res.status(400).json({
+              status: "error",
+              error: "password incorrect",
+            });
+          } else {
           // The information the should be stored inside token
           const payload = {
             // user: {
