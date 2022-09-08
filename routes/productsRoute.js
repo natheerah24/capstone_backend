@@ -29,7 +29,7 @@ router.get("/:id", (req, res) => {
   }
 });
 // POST
-router.post("/add_product", (req, res) => {
+router.post("/", (req, res) => {
   const {
     sku,
     name,
