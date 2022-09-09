@@ -3,7 +3,7 @@ const router = express.Router();
 const con = require("../lib/db_connections");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const middleware = require("../middleware/auth");
+// const middleware = require("../middleware/auth");
 // GET ALL USERS
 router.get("/", (req, res) => {
   try {
@@ -124,21 +124,22 @@ router.post("/login", (req, res) => {
     con.query(sql, user, async (err, result) => {
       if (err) throw err;
       if (result.length === 0) {
-      res.status(400).json({
+        res.status(400).json({
           status: "error",
           error: "Email not found please register",
         });
       } else {
         const isMatch = await bcrypt.compare(
-          req.body.passwordHash,
-          result[0].passwordHash
-          );
-          if (!isMatch) {
-            res.status(400).json({
-              status: "error",
-              error: "password incorrect",
-            });
-          } else {
+          req.body.password,
+          result[0].password
+        );
+
+        if (!isMatch) {
+          res.status(400).json({
+            status: "error",
+            error: "password incorrect",
+          });
+        } else {
           // The information the should be stored inside token
           const payload = {
             // user: {
