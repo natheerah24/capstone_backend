@@ -82,7 +82,6 @@ router.put("/:user_id", (req, res) => {
   const hash = bcrypt.hashSync(password, salt);
 
   let user = {
-    email,
     password: hash,
     full_name,
     billing_address,
