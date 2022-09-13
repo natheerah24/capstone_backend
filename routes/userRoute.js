@@ -70,7 +70,6 @@ router.post("/register", (req, res) => {
 router.put("/:user_id", (req, res) => {
   let sql = "UPDATE users SET ?";
   const {
-    email,
     password,
     full_name,
     billing_address,
@@ -163,7 +162,7 @@ router.post("/login", (req, res) => {
             },
             (err, token) => {
               if (err) throw err;
-              res.json({ token, payload, error : "Login Successful" });
+              res.json({ token, payload, error: "Login Successful" });
             }
           );
         }
